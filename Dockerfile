@@ -5,8 +5,8 @@ RUN apk --no-cache add curl openssl && \
     mkdir -p /etc/trojan
 
 # Скачайте и установите trojan-go
-RUN TROJAN_GO_VERSION="v1.7.0" && \
-    TROJAN_GO_URL="https://github.com/p4gefau1t/trojan-go/releases/download/${TROJAN_GO_VERSION}/trojan-go-linux-amd64.zip" && \
+RUN TROJAN_GO_VERSION="v0.10.6" && \
+    TROJAN_GO_URL="https://github.com/p4gefau1t/trojan-go/releases/download/v0.10.6/trojan-go-linux-amd64.zip" && \
     curl -L -o /tmp/trojan-go.zip ${TROJAN_GO_URL} && \
     cd /tmp && \
     unzip trojan-go.zip && \
