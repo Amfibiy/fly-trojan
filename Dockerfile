@@ -1,28 +1,21 @@
 FROM alpine:latest
 
 # Установите необходимые пакеты
-RUN apk --no-cache add curl unzip && \
+RUN apk --no-cache add curl openssl && \
     mkdir -p /etc/trojan
 
 # Скачайте и установите trojan-go
 RUN TROJAN_GO_VERSION="v1.7.0" && \
-    TROJAN_GO_URL="https://github.com/p4gefau1t/trojan-go/releases/download/v0.10.6/trojan-go-linux-amd64.zip" && \
-    # Скачайте архив
+    TROJAN_GO_URL="https://github.com/p4gefau1t/trojan-go/releases/download/${TROJAN_GO_VERSION}/trojan-go-linux-amd64.zip" && \
     curl -L -o /tmp/trojan-go.zip ${TROJAN_GO_URL} && \
-    # Проверьте, что файл скачался
-    ls -la /tmp/trojan-go.zip && \
-    # Распакуйте архив
     cd /tmp && \
     unzip trojan-go.zip && \
-    # Проверьте, что бинарник существует (выведет список файлов)
-    ls -la && \
-    # Найдите и переместите бинарник (обычно он называется 'trojan-go')
-    # Если имя отличается - исправьте 'mv /tmp/имя_файла /usr/local/bin/trojan-go'
     mv trojan-go /usr/local/bin/trojan-go && \
-    # Сделайте его исполняемым
     chmod +x /usr/local/bin/trojan-go && \
-    # Удалите временные файлы
     rm -rf /tmp/*
+
+# Создайте самоподписанный сертификат
+RUN openssl req -newkey rsa:2048 -nodes -keyout /etc/trojan/private.key -x509 -days 365 -out /etc/trojan/cert.crt -subj "/C=US/ST=State/L=City/O=Organization/CN=my-trojan-001.onrender.com"
 
 # Скопируйте конфигурационный файл
 COPY config.json /etc/trojan/config.json
