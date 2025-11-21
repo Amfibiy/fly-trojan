@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 # Установите необходимые пакеты
-RUN apk --no-cache add curl && \
+RUN apk --no-cache add curl unzip && \
     mkdir -p /etc/trojan
 
 # Скачайте последнюю версию trojan-go
