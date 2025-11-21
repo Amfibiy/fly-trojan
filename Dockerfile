@@ -15,13 +15,14 @@ RUN TROJAN_GO_VERSION="v0.10.6" && \
     rm -rf /tmp/*
 
 # Создайте самоподписанный сертификат
-RUN openssl req -newkey rsa:2048 -nodes -keyout /etc/trojan/private.key -x509 -days 365 -out /etc/trojan/cert.crt -subj "/C=US/ST=State/L=City/O=Organization/CN=my-trojan-001.onrender.com"
+RUN openssl req -newkey rsa:2048 -nodes -keyout /etc/trojan/private.key -x509 -days 365 -out /etc/trojan/cert.crt -subj "/C=US/ST=State/L=City/O=Organization/CN=fly-trojan.onrender.com"
 
 # Скопируйте конфигурационный файл
 COPY config.json /etc/trojan/config.json
 
-# Откройте порт 443
+# Откройте порты 443 и 80
 EXPOSE 443
+EXPOSE 80
 
 # Запустите сервер
 CMD ["trojan-go", "-config", "/etc/trojan/config.json"]
