@@ -4,12 +4,14 @@ FROM alpine:latest
 RUN apk --no-cache add curl unzip && \
     mkdir -p /etc/trojan
 
-# Скачайте последнюю версию trojan-go
+# Скачайте и распакуйте trojan-go
 RUN TROJAN_GO_VERSION="v1.7.0" && \
     TROJAN_GO_URL="https://github.com/p4gefau1t/trojan-go/releases/download/${TROJAN_GO_VERSION}/trojan-go-linux-amd64.zip" && \
     curl -L ${TROJAN_GO_URL} -o /tmp/trojan-go.zip && \
-    unzip /tmp/trojan-go.zip -d /tmp && \
-    mv /tmp/trojan-go /usr/local/bin/trojan-go && \
+    cd /tmp && \
+    unzip trojan-go.zip && \
+    # Проверьте, что бинарник существует, и переместите его
+    mv trojan-go* /usr/local/bin/trojan-go && \
     rm -rf /tmp/*
 
 # Скопируйте конфигурационный файл
