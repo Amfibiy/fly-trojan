@@ -1,0 +1,11 @@
+{
+  "run_type": "server",
+  "local_addr": "0.0.0.0",
+  "local_port": 443,
+  "password": ["MySuperSecretPass123!"],
+  "ssl": {
+    "cert": "/etc/letsencrypt/live/fly.dev/fullchain.pem",
+    "key": "/etc/letsencrypt/live/fly.dev/privkey.pem",
+    "sni": "my-trojan.fly.dev"
+  }
+}
