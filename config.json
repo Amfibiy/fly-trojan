@@ -2,10 +2,10 @@
   "run_type": "server",
   "local_addr": "0.0.0.0",
   "local_port": 443,
-  "password": ["2z#ueq9%"],
+  "password": ["MySuperSecretPass123!"],
   "ssl": {
-    "cert": "/etc/letsencrypt/live/fly.dev/fullchain.pem",
-    "key": "/etc/letsencrypt/live/fly.dev/privkey.pem",
+    "cert": "/etc/trojan/cert.crt",
+    "key": "/etc/trojan/private.key",
     "sni": "fly-trojan.onrender.com"
   }
 }
