@@ -1,18 +1,27 @@
 FROM alpine:latest
 
 # Установите необходимые пакеты
-RUN apk --no-cache add curl && \
+RUN apk --no-cache add curl unzip && \
     mkdir -p /etc/trojan
 
-# Скачайте бинарник trojan-go напрямую (без архива)
+# Скачайте и установите trojan-go
 RUN TROJAN_GO_VERSION="v1.7.0" && \
-    TROJAN_GO_URL="https://github.com/p4gefau1t/trojan-go/releases/download/${TROJAN_GO_VERSION}/trojan-go-linux-amd64.tar.gz" && \
-    curl -L -o /tmp/trojan-go.tar.gz ${TROJAN_GO_URL} && \
-    # Распакуйте .tar.gz
-    tar -xzf /tmp/trojan-go.tar.gz -C /tmp && \
-    # Найдите бинарник и переместите его
-    mv /tmp/trojan-go /usr/local/bin/trojan-go && \
+    TROJAN_GO_URL="https://github.com/p4gefau1t/trojan-go/releases/download/${TROJAN_GO_VERSION}/trojan-go-linux-amd64.zip" && \
+    # Скачайте архив
+    curl -L -o /tmp/trojan-go.zip ${TROJAN_GO_URL} && \
+    # Проверьте, что файл скачался
+    ls -la /tmp/trojan-go.zip && \
+    # Распакуйте архив
+    cd /tmp && \
+    unzip trojan-go.zip && \
+    # Проверьте, что бинарник существует (выведет список файлов)
+    ls -la && \
+    # Найдите и переместите бинарник (обычно он называется 'trojan-go')
+    # Если имя отличается - исправьте 'mv /tmp/имя_файла /usr/local/bin/trojan-go'
+    mv trojan-go /usr/local/bin/trojan-go && \
+    # Сделайте его исполняемым
     chmod +x /usr/local/bin/trojan-go && \
+    # Удалите временные файлы
     rm -rf /tmp/*
 
 # Скопируйте конфигурационный файл
