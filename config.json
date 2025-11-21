@@ -6,6 +6,6 @@
   "ssl": {
     "cert": "/etc/letsencrypt/live/fly.dev/fullchain.pem",
     "key": "/etc/letsencrypt/live/fly.dev/privkey.pem",
-    "sni": "my-trojan-001.onrender.com"
+    "sni": "fly-trojan.onrender.com"
   }
 }
