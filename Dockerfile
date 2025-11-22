@@ -3,7 +3,7 @@ FROM alpine:latest
 RUN apk --no-cache add curl openssl lighttpd netcat-openbsd && \
     mkdir -p /etc/trojan
 
-RUN TROJAN_GO_VERSION="v1.7" && \
+RUN TROJAN_GO_VERSION="v1.7.0" && \
     TROJAN_GO_URL="https://github.com/p4gefau1t/trojan-go/releases/download/${TROJAN_GO_VERSION}/trojan-go-linux-amd64.zip" && \
     curl -L -o /tmp/trojan-go.zip ${TROJAN_GO_URL} && \
     cd /tmp && \
