@@ -2,7 +2,7 @@
   "run_type": "server",
   "local_addr": "0.0.0.0",
   "local_port": 443,
-  "password": ["MySuperSecretPass123!"],
+  "password": ["2z#ueq9%"],
   "ssl": {
     "cert": "/etc/trojan/cert.crt",
     "key": "/etc/trojan/private.key",
