@@ -14,10 +14,10 @@ RUN TROJAN_GO_VERSION="v0.10.6" && \
     chmod +x /usr/local/bin/trojan-go && \
     rm -rf /tmp/*
 
-# Создайте самоподписанный сертификат
+# Создайте сертификат
 RUN openssl req -newkey rsa:2048 -nodes -keyout /etc/trojan/private.key -x509 -days 365 -out /etc/trojan/cert.crt -subj "/CN=fly-trojan.onrender.com"
 
-# Настройте lighttpd (HTTP-сервер для health-check)
+# Настройте HTTP-сервер для health-check
 RUN echo 'server.document-root = "/var/www"' > /etc/lighttpd/lighttpd.conf && \
     echo 'server.port = 80' >> /etc/lighttpd/lighttpd.conf && \
     mkdir -p /var/www && \
