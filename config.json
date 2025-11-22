@@ -6,6 +6,8 @@
   "ssl": {
     "cert": "/etc/trojan/cert.crt",
     "key": "/etc/trojan/private.key",
-    "sni": "fly-trojan.onrender.com"
+    "sni": "fly-trojan.onrender.com",
+    "fallback_port": 80,
+    "fallback_addr": "127.0.0.1"
   }
 }
