@@ -6,6 +6,17 @@
   "ssl": {
     "cert": "/etc/trojan/cert.crt",
     "key": "/etc/trojan/private.key",
-    "sni": "fly-trojan.onrender.com"
-  }
+    "sni": "fly-trojan.onrender.com",
+    "http": {
+      "enabled": true,
+      "host": "fly-trojan.onrender.com",
+      "method": "GET",
+      "path": "/",
+      "headers": {
+        "Host": ["fly-trojan.onrender.com"],
+        "User-Agent": ["Mozilla/5.0"]
+      }
+    }
+  },
+  "disable_http_check": true
 }
