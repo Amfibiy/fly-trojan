@@ -6,17 +6,14 @@
   "ssl": {
     "cert": "/etc/trojan/cert.crt",
     "key": "/etc/trojan/private.key",
-    "sni": "fly-trojan.onrender.com",
-    "fallback_port": 80,
-    "fallback_addr": "127.0.0.1",
-    "http": {
-      "enabled": true,
-      "host": "fly-trojan.onrender.com",
-      "method": "GET",
-      "path": "/",
-      "headers": {
-        "User-Agent": ["Mozilla/5.0"]
-      }
+    "sni": "fly-trojan.onrender.com"
+  },
+  "transport": {
+    "type": "ws",
+    "ws": {
+      "path": "/ws"
     }
-  }
+  },
+  "fallback_port": 80,
+  "fallback_addr": "127.0.0.1"
 }
