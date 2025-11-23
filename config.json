@@ -1,19 +1,22 @@
 {
-  "run_type": "server",
-  "local_addr": "0.0.0.0",
-  "local_port": 443,
-  "password": ["2z#ueq9%"],
-  "ssl": {
-    "cert": "/etc/trojan/cert.crt",
-    "key": "/etc/trojan/private.key",
-    "sni": "fly-trojan.onrender.com"
-  },
-  "transport": {
-    "type": "ws",
-    "ws": {
-      "path": "/ws"
+  "inbounds": [{
+    "port": 10000,
+    "listen": "127.0.0.1",
+    "protocol": "vmess",
+    "settings": {
+      "clients": [{
+        "id": "183dc2dd-0651-43cd-bc1e-693005aeff56",
+        "alterId": 0
+      }]
+    },
+    "streamSettings": {
+      "network": "ws",
+      "wsSettings": {
+        "path": "/ws"
+      }
     }
-  },
-  "fallback_port": 80,
-  "fallback_addr": "127.0.0.1"
+  }],
+  "outbounds": [{
+    "protocol": "freedom"
+  }]
 }
